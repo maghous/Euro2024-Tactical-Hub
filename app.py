@@ -112,7 +112,7 @@ st.markdown("""
 # --- Header Logo ---
 col_head1, col_head2, col_head3 = st.columns([1, 2, 1])
 with col_head2:
-    st.image("Logo_UEFA_Euro_2024.svg", use_container_width=True)
+    st.image("Logo_UEFA_Euro_2024.svg", use_column_width=True)
 st.markdown("---")
 
 # --- Optimized Data Engine ---
