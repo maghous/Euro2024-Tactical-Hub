@@ -22,7 +22,7 @@
 
 Experience the full tactical hub live on Streamlit Cloud:
 
-🔗 **[Launch App → your-app-link.streamlit.app](https://your-app-link.streamlit.app)**
+🔗 **[Launch App → your-app-link.streamlit.app](https://euro2024-tactical-app.streamlit.app)**
 
 > No installation required — explore EURO 2024 data directly in your browser.
 
