@@ -109,11 +109,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- Main Intelligence Hub ---
-# (Moved logos here to ensure they render even if data loading is slow)
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/UEFA_Euro_2024_Logo.svg/1200px-UEFA_Euro_2024_Logo.svg.png", width=200)
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/UEFA_logo.svg/1200px-UEFA_logo.svg.png", width=100)
-st.sidebar.markdown("---")
+# --- Header Logo ---
+col_head1, col_head2, col_head3 = st.columns([1, 2, 1])
+with col_head2:
+    st.image("Logo_UEFA_Euro_2024.svg", use_container_width=True)
+st.markdown("---")
 
 # --- Optimized Data Engine ---
 @st.cache_data
