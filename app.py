@@ -109,11 +109,17 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# --- Main Intelligence Hub ---
+# (Moved logos here to ensure they render even if data loading is slow)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/UEFA_Euro_2024_Logo.svg/1200px-UEFA_Euro_2024_Logo.svg.png", width=200)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/UEFA_logo.svg/1200px-UEFA_logo.svg.png", width=100)
+st.sidebar.markdown("---")
+
 # --- Optimized Data Engine ---
 @st.cache_data
 def load_and_optimize():
     if not os.path.exists("data/euro_matches.csv") or not os.path.exists("data/euro_events.csv"):
-        st.error("🚨 Missing database files in /data directory.")
+        st.error(f"🚨 Missing database files. Paths checked: data/euro_matches.csv, data/euro_events.csv")
         st.stop()
         
     m_df = pd.read_csv("data/euro_matches.csv")
@@ -166,18 +172,17 @@ def render_metric(label, val, sub=""):
 def get_team_stats(team_name):
     return events[events['team'] == team_name].copy()
 
-# --- Sidebar Hub ---
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/UEFA_Euro_2024_Logo.svg/1200px-UEFA_Euro_2024_Logo.svg.png", width=200)
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/UEFA_logo.svg/1200px-UEFA_logo.svg.png", width=100)
-st.sidebar.markdown("---")
+# --- Sidebar Hub (Controls) ---
 st.sidebar.markdown("### 🔍 Strategic Filtering")
-all_nations = sorted(events['team'].unique())
-target_nation = st.sidebar.selectbox("🎯 Focus Nation", all_nations, index=all_nations.index("England") if "England" in all_nations else 0)
+all_nations = sorted(events['team'].unique()) if not events.empty else ["No Data"]
+target_nation = st.sidebar.selectbox("🎯 Focus Nation", all_nations)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 📊 Database Status")
-st.sidebar.write(f"**Matches:** {len(matches)}")
-st.sidebar.write(f"**Events:** {len(events):,}")
+st.sidebar.write(f"**Matches found:** {len(matches)}")
+st.sidebar.write(f"**Events found:** {len(events):,}")
+if len(events) == 0:
+    st.sidebar.warning("⚠️ Data loaded as empty. Check CSV formatting.")
 st.sidebar.caption("High-Performance Mode Active")
 
 # --- Main Intelligence Hub ---
