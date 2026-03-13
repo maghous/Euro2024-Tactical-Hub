@@ -167,12 +167,9 @@ def get_team_stats(team_name):
     return events[events['team'] == team_name].copy()
 
 # --- Sidebar Hub ---
-col_logo1, col_logo2 = st.sidebar.columns([1, 1.2])
-with col_logo1:
-    st.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/UEFA_logo.svg/1200px-UEFA_logo.svg.png", width=80)
-with col_logo2:
-    st.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/UEFA_Euro_2024_Logo.svg/1200px-UEFA_Euro_2024_Logo.svg.png", width=100)
-st.sidebar.markdown("<br>", unsafe_allow_html=True)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/UEFA_Euro_2024_Logo.svg/1200px-UEFA_Euro_2024_Logo.svg.png", width=200)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/UEFA_logo.svg/1200px-UEFA_logo.svg.png", width=100)
+st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔍 Strategic Filtering")
 all_nations = sorted(events['team'].unique())
 target_nation = st.sidebar.selectbox("🎯 Focus Nation", all_nations, index=all_nations.index("England") if "England" in all_nations else 0)
